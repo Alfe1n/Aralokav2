@@ -8,6 +8,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         offset = transform.position - target.position;
+        transform.rotation = Quaternion.Euler(30f, 45f, 0f);
     }
 
     void LateUpdate()
