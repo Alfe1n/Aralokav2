@@ -6,25 +6,41 @@ public class PlayerSpawn : MonoBehaviour
 {
     void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded +=
+            OnSceneLoaded;
     }
 
     void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -=
+            OnSceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneLoaded(
+        Scene scene,
+        LoadSceneMode mode
+    )
     {
-        // 🔥 skip core scene
-        if (scene.name == "Core Scene")
+        // skip non gameplay scenes
+        if (
+            scene.name == "Core Scene"
+            || scene.name == "LoadingScene"
+            || scene.name == "OpeningScene"
+            || scene.name == "MainMenu"
+        )
+        {
             return;
+        }
 
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(
+            SpawnRoutine()
+        );
     }
 
     IEnumerator SpawnRoutine()
     {
+        // tunggu scene siap
+        yield return null;
         yield return null;
 
         string spawnName =
@@ -41,7 +57,8 @@ public class PlayerSpawn : MonoBehaviour
         if (spawn != null)
         {
             Debug.Log(
-                "Spawn ditemukan: " + spawnName
+                "Spawn ditemukan: "
+                + spawnName
             );
 
             transform.position =

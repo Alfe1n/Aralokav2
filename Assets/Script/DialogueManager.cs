@@ -6,6 +6,7 @@ using System.Collections;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
+    public bool isDialogueActive;
 
     [Header("UI")]
     public GameObject dialoguePanel;
